@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const FechaHoraFormulario = ({setDateText}) => {
   const [bloques, setBloques] = useState([{ tipo: 'especificas', fechas: [{ fecha: '', inicio: '', fin: '' }] }]);
+  const [frase, setFrase] = useState('');
 
   const agregarBloqueFecha = () => {
     setBloques([...bloques, { tipo: 'especificas', fechas: [{ fecha: '', inicio: '', fin: '' }] }]);
@@ -89,6 +90,7 @@ const FechaHoraFormulario = ({setDateText}) => {
 
     console.log(frases.filter(frase => frase).join('; '));
     setDateText(frases.filter(frase => frase).join('; '));
+    setFrase(frases.filter(frase => frase).join('; '));
   };
 
   return (
@@ -212,7 +214,8 @@ const FechaHoraFormulario = ({setDateText}) => {
 
       <button type="button" onClick={agregarBloqueFecha}>Agregar lógica de fechas</button>
       <br /><br />
-      <button type="button" onClick={handleSubmit}>Generar texto</button>
+      <button type="button" className='bg-blue-50' onClick={handleSubmit}>Generar texto</button>
+      {frase!=='' && <p>{frase}</p>}
     </div>
   );
 };
