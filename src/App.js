@@ -118,15 +118,15 @@ function App() {
     },
     "Comunicado limpieza de fachada de vidrio": {
         "option": "Comunicado limpieza de fachada de vidrio",
-        "1": {"tipo":"date", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado limpieza muro cortina": {
         "option": "Comunicado limpieza muro cortina",
-        "1": {"tipo":"date", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado mantenimiento de aire acondicionado": {
         "option": "Comunicado mantenimiento de aire acondicionado",
-        "1": {"tipo":"date", "label":"Fecha(s)"},
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
         "2": {"tipo":"select", "label":"Disponibilidad de servicio", "valores":["Por tal motivo, no tendremos dicho servicio ese día.", "Sin embargo, la ejecución de los trabajos no afectará el funcionamiento del servicio."]}
     },
     "Comunicado mantenimiento de ascensores": {
@@ -184,20 +184,20 @@ function App() {
     },
     "Comunicado mantenimiento Sistema Contra Incendio (SCI)": {
         "option": "Comunicado mantenimiento Sistema Contra Incendio (SCI)",
-        "1": {"tipo":"date", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado mantenimiento sistema preventivo de seguridad": {
         "option": "Comunicado mantenimiento sistema preventivo de seguridad",
-        "1": {"tipo":"date", "label":"Fecha(s)"},
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
         "2": {"tipo":"time", "label":"Desde / Hasta"}
     },
     "Comunicado saneamiento ambiental": {
         "option": "Comunicado saneamiento ambiental",
-        "1": {"tipo":"date", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado vacaciones": {
         "option": "Comunicado vacaciones",
-        "1": {"tipo":"date", "label":"Fecha(s)"},
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
         "2": {"tipo":"select", "label":"Abreviación Persona de Salida", "valores":["Sra.","Sr.","Srta."]},
         "3": {"tipo":"texto", "label":"Nombre de Persona de Salida"},
         "4": {"tipo":"select", "label":"Abreviación de Backup", "valores":["Sra.","Sr.","Srta."]},
@@ -303,8 +303,8 @@ function App() {
   );
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form className="w-full max-w-md" onSubmit={handleSubmit}>
+    <div className="flex justify-center items-center h-screen bg-gray-100">
+      <form className="w-full max-w-2xl max-h-[92dvh] bg-white p-8 rounded-lg shadow-lg overflow-y-auto" onSubmit={handleSubmit}>
         <div className="mb-6">
           <label htmlFor="select" className="block text-gray-700 font-bold mb-2">
             Selecciona una opción:
@@ -318,82 +318,89 @@ function App() {
             onBlur={() => setTimeout(() => setIsOpen(false), 200)}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
           />
-          {isOpen && (<div className="absolute z-10 bg-white border rounded w-full mt-1 overflow-y-auto max-h-80 max-w-sm">
-            {filteredOptions.map((option, index) => (
-              <div
-                key={index}
-                onMouseDown={() => handleOptionClick(option)}
-                className="cursor-pointer hover:bg-gray-100 py-1 px-3"
-              >
-                {option.nombre}
-              </div>
-            ))}
-          </div>)}
+          {isOpen && (
+            <div className="absolute z-10 bg-white border rounded w-full mt-1 overflow-y-auto max-h-80 max-w-sm shadow-lg">
+              {filteredOptions.map((option, index) => (
+                <div
+                  key={index}
+                  onMouseDown={() => handleOptionClick(option)}
+                  className="cursor-pointer hover:bg-gray-100 py-2 px-4"
+                >
+                  {option.nombre}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
-          {(selectedOption!=='') && dataTypes[selectedOption] && 
+        {(selectedOption !== '') && dataTypes[selectedOption] &&
           <div>
             <div>
               {fieldsToList(forAll).map((field, index) => (
-                  <div key={index}>
-                    <label htmlFor="select" className="block text-gray-700 font-bold mb-2">
-                      {forAll[field].label}:
-                    </label>
-                    {forAll[field].tipo === 'select' &&
+                <div key={index} className="mb-4">
+                  <label htmlFor={`x${field}`} className="block text-gray-700 font-bold mb-2">
+                    {forAll[field].label}:
+                  </label>
+                  {forAll[field].tipo === 'select' &&
                     <div>
-                      <select name={"x"+field}>
+                      <select name={`x${field}`} className="block w-full bg-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-500">
                         {forAll[field].valores.map((option, index) => (
-                          <option value={option}>{option}</option>
+                          <option key={index} value={option}>{option}</option>
                         ))}
                       </select>
-                    </div>}
-                    {forAll[field].tipo === 'oneDate' &&
-                      <input
-                        type='date'
-                        name={"x"+field}
-                        className="cursor-pointer hover:bg-gray-100 py-1 px-3"
-                      />
-                    }
-                  </div>
-                ))}
+                    </div>
+                  }
+                  {forAll[field].tipo === 'oneDate' &&
+                    <input
+                      type='date'
+                      name={`x${field}`}
+                      className="block w-full bg-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-500"
+                    />
+                  }
+                </div>
+              ))}
             </div>
             <div>
-            {fieldsToList(dataTypes[selectedOption]).map((field, index) => (
-                <div key={index}>
-                  <label htmlFor="select" className="block text-gray-700 font-bold mb-2">
+              {fieldsToList(dataTypes[selectedOption]).map((field, index) => (
+                <div key={index} className="mb-4">
+                  <label htmlFor={`y${field}`} className="block text-gray-700 font-bold mb-2">
                     {dataTypes[selectedOption][field].label}:
                   </label>
                   {dataTypes[selectedOption][field].tipo === 'select' &&
-                  <div>
-                    <select name={"y"+field}>
-                      {dataTypes[selectedOption][field].valores.map((option, index) => (
-                        <option value={option}>{option}</option>
-                      ))}
-                    </select>
-                  </div>}
-                  {dataTypes[selectedOption][field].tipo === 'datetime' &&
-                  <FechaHoraFormulario
-                      setDateText = {setDateText}
-                  />
+                    <div>
+                      <select name={`y${field}`} className="block w-full bg-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-500">
+                        {dataTypes[selectedOption][field].valores.map((option, index) => (
+                          <option key={index} value={option}>{option}</option>
+                        ))}
+                      </select>
+                    </div>
                   }
-                  {dataTypes[selectedOption][field].tipo !== 'select' &&
-                  dataTypes[selectedOption][field].tipo !== 'datetime' &&
-                  <input
-                    type='text'
-                    name={"y"+field}
-                    className="cursor-pointer hover:bg-gray-100 py-1 px-3"
-                  />}
+                  {dataTypes[selectedOption][field].tipo === 'datetime' &&
+                    <FechaHoraFormulario
+                      setDateText={setDateText}
+                    />
+                  }
+                  {dataTypes[selectedOption][field].tipo !== 'select' && dataTypes[selectedOption][field].tipo !== 'datetime' &&
+                    <input
+                      type='text'
+                      name={`y${field}`}
+                      className="block w-full bg-white border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-500"
+                    />
+                  }
                 </div>
               ))}
+            </div>
           </div>
-        </div>}
+        }
+        <button
+          type="submit"
+          onClick={handleSubmit}
+          className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-700"
+        >
+          Enviar
+        </button>
       </form>
-      <button
-        type="submit"
-        onClick={handleSubmit}
-      >
-        Enviar
-      </button>
     </div>
+
   );
 }
 

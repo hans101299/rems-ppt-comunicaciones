@@ -15,8 +15,8 @@ const FechaHoraFormulario = ({setDateText}) => {
       nuevosBloques[index].fechas = [{ fecha: '', inicio: '', fin: '' }];
     } else {
       nuevosBloques[index].fechas = [{ fecha: '', inicio: '', fin: '' }, { fecha: '', inicio: '', fin: '' }];
-      nuevosBloques[index].horario = { inicio: '', fin: '' };
     }
+    nuevosBloques[index].horario = { inicio: '', fin: '' };
     setBloques(nuevosBloques);
   };
 
@@ -34,6 +34,7 @@ const FechaHoraFormulario = ({setDateText}) => {
 
   const handleRangoHorarioChange = (index, field, valor) => {
     const nuevosBloques = [...bloques];
+    console.log(nuevosBloques)
     nuevosBloques[index].horario[field] = valor;
     setBloques(nuevosBloques);
   };
@@ -49,7 +50,7 @@ const FechaHoraFormulario = ({setDateText}) => {
           return '';
         }
         return fechas.map(({ fecha, inicio, fin }) => {
-          let frase = `el ${new Date(fecha).toLocaleDateString()}`;
+          let frase = `el ${new Date(fecha).toLocaleDateString("es-PE", {timeZone: "UTC"})}`;
           if (inicio && fin) {
             frase += ` desde las ${inicio} hasta las ${fin} horas`;
           } else if (inicio) {
@@ -59,11 +60,12 @@ const FechaHoraFormulario = ({setDateText}) => {
         }).join(', ');
       } else if (bloque.tipo === 'especificasGeneral') {
         const fechas = bloque.fechas.filter(fecha => fecha.fecha);
+        console.log(fechas);
         if (fechas.length === 0) {
           alert('Por favor, ingrese al menos una fecha específica.');
           return '';
         }
-        let frase = `el ${fechas.map(fecha => new Date(fecha.fecha).toLocaleDateString()).join(', ')}`;
+        let frase = `el ${fechas.map(fecha => new Date(fecha.fecha).toLocaleDateString("es-PE", {timeZone: "UTC"})).join(', ')}`;
         if (bloque.horario.inicio && bloque.horario.fin) {
           frase += ` desde las ${bloque.horario.inicio} hasta las ${bloque.horario.fin} horas`;
         } else if (bloque.horario.inicio) {
@@ -77,7 +79,7 @@ const FechaHoraFormulario = ({setDateText}) => {
           alert('Por favor, ingrese el rango de fechas completo.');
           return '';
         }
-        let fraseRango = `desde el ${new Date(fechaInicio).toLocaleDateString()} hasta el ${new Date(fechaFin).toLocaleDateString()}`;
+        let fraseRango = `desde el ${new Date(fechaInicio).toLocaleDateString("es-PE", {timeZone: "UTC"})} hasta el ${new Date(fechaFin).toLocaleDateString("es-PE", {timeZone: "UTC"})}`;
         if (bloque.horario.inicio && bloque.horario.fin) {
           fraseRango += ` desde las ${bloque.horario.inicio} hasta las ${bloque.horario.fin} horas`;
         } else if (bloque.horario.inicio) {
@@ -94,129 +96,164 @@ const FechaHoraFormulario = ({setDateText}) => {
   };
 
   return (
-    <div>
-      <h2>Seleccionar Fechas y Horas</h2>
+    <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6">Seleccionar Fechas y Horas</h2>
 
       {bloques.map((bloque, index) => (
-        <div key={index} className="bloque-fecha">
-          <label>Tipo de fecha:</label>
-          <input
-            type="radio"
-            name={`tipo-fecha-${index}`}
-            value="especificas"
-            checked={bloque.tipo === 'especificas'}
-            onChange={() => handleTipoChange(index, 'especificas')}
-          /> Fechas específicas con rangos individuales
-          <input
-            type="radio"
-            name={`tipo-fecha-${index}`}
-            value="especificasGeneral"
-            checked={bloque.tipo === 'especificasGeneral'}
-            onChange={() => handleTipoChange(index, 'especificasGeneral')}
-          /> Fechas específicas con rango general
-          <input
-            type="radio"
-            name={`tipo-fecha-${index}`}
-            value="rango"
-            checked={bloque.tipo === 'rango'}
-            onChange={() => handleTipoChange(index, 'rango')}
-          /> Rango de fechas
-          
+        <div key={index} className="bloque-fecha mb-6 p-4 border rounded-lg">
+          <label className="block text-gray-700 font-semibold mb-2">Tipo de fecha:</label>
+          <div className="mb-4">
+            <label className="inline-flex items-center mr-4">
+              <input
+                type="radio"
+                name={`tipo-fecha-${index}`}
+                value="especificas"
+                checked={bloque.tipo === 'especificas'}
+                onChange={() => handleTipoChange(index, 'especificas')}
+                className="form-radio"
+              /> Fechas específicas con rangos individuales
+            </label>
+            <label className="inline-flex items-center mr-4">
+              <input
+                type="radio"
+                name={`tipo-fecha-${index}`}
+                value="especificasGeneral"
+                checked={bloque.tipo === 'especificasGeneral'}
+                onChange={() => handleTipoChange(index, 'especificasGeneral')}
+                className="form-radio"
+              /> Fechas específicas con rango general
+            </label>
+            <label className="inline-flex items-center">
+              <input
+                type="radio"
+                name={`tipo-fecha-${index}`}
+                value="rango"
+                checked={bloque.tipo === 'rango'}
+                onChange={() => handleTipoChange(index, 'rango')}
+                className="form-radio"
+              /> Rango de fechas
+            </label>
+          </div>
+
           {bloque.tipo === 'especificas' && (
             <div className="fechas-especificas">
               {bloque.fechas.map((fecha, fechaIndex) => (
-                <div key={fechaIndex}>
+                <div key={fechaIndex} className="flex items-center mb-2">
                   <input
                     type="date"
                     value={fecha.fecha}
                     onChange={(e) => handleFechaChange(index, fechaIndex, 'fecha', e.target.value)}
+                    className="form-input w-1/3 mr-2"
                   />
                   <input
                     type="time"
                     value={fecha.inicio}
                     onChange={(e) => handleFechaChange(index, fechaIndex, 'inicio', e.target.value)}
                     placeholder="Hora de inicio"
+                    className="form-input w-1/3 mr-2"
                   />
                   <input
                     type="time"
                     value={fecha.fin}
                     onChange={(e) => handleFechaChange(index, fechaIndex, 'fin', e.target.value)}
                     placeholder="Hora de fin"
+                    className="form-input w-1/3"
                   />
                 </div>
               ))}
-              <button type="button" onClick={() => agregarFechaEspecifica(index)}>Agregar otra fecha</button>
+              <button type="button" onClick={() => agregarFechaEspecifica(index)} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Agregar otra fecha
+              </button>
             </div>
           )}
-          
+
           {bloque.tipo === 'especificasGeneral' && (
             <div className="fechas-especificas">
               {bloque.fechas.map((fecha, fechaIndex) => (
-                <div key={fechaIndex}>
+                <div key={fechaIndex} className="mb-2">
                   <input
                     type="date"
                     value={fecha.fecha}
                     onChange={(e) => handleFechaChange(index, fechaIndex, 'fecha', e.target.value)}
+                    className="form-input w-full"
                   />
                 </div>
               ))}
-              <button type="button" onClick={() => agregarFechaEspecifica(index)}>Agregar otra fecha</button>
-              <div>
-                <label>Rango horario general:</label>
+              <button type="button" onClick={() => agregarFechaEspecifica(index)} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                Agregar otra fecha
+              </button>
+              <div className="mt-4">
+                <label className="block text-gray-700 font-semibold mb-2">Rango horario general:</label>
+                <div className="flex items-center">
+                  <input
+                    type="time"
+                    value={bloque.horario?.inicio || ''}
+                    onChange={(e) => handleRangoHorarioChange(index, 'inicio', e.target.value)}
+                    placeholder="Hora de inicio"
+                    className="form-input w-1/2 mr-2"
+                  />
+                  <input
+                    type="time"
+                    value={bloque.horario?.fin || ''}
+                    onChange={(e) => handleRangoHorarioChange(index, 'fin', e.target.value)}
+                    placeholder="Hora de fin"
+                    className="form-input w-1/2"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {bloque.tipo === 'rango' && (
+            <div className="rango-fechas">
+              <div className="flex items-center mb-2">
+                <input
+                  type="date"
+                  value={bloque.fechas[0].fecha}
+                  onChange={(e) => handleFechaChange(index, 0, 'fecha', e.target.value)}
+                  placeholder="Fecha de inicio"
+                  className="form-input w-1/2 mr-2"
+                />
+                <input
+                  type="date"
+                  value={bloque.fechas[1].fecha}
+                  onChange={(e) => handleFechaChange(index, 1, 'fecha', e.target.value)}
+                  placeholder="Fecha de fin"
+                  className="form-input w-1/2"
+                />
+              </div>
+              <label className="block text-gray-700 font-semibold mb-2">Rango horario general:</label>
+              <div className="flex items-center">
                 <input
                   type="time"
                   value={bloque.horario?.inicio || ''}
                   onChange={(e) => handleRangoHorarioChange(index, 'inicio', e.target.value)}
                   placeholder="Hora de inicio"
+                  className="form-input w-1/2 mr-2"
                 />
                 <input
                   type="time"
                   value={bloque.horario?.fin || ''}
                   onChange={(e) => handleRangoHorarioChange(index, 'fin', e.target.value)}
                   placeholder="Hora de fin"
+                  className="form-input w-1/2"
                 />
               </div>
-            </div>
-          )}
-          
-          {bloque.tipo === 'rango' && (
-            <div className="rango-fechas">
-              <input
-                type="date"
-                value={bloque.fechas[0].fecha}
-                onChange={(e) => handleFechaChange(index, 0, 'fecha', e.target.value)}
-                placeholder="Fecha de inicio"
-              />
-              <input
-                type="date"
-                value={bloque.fechas[1].fecha}
-                onChange={(e) => handleFechaChange(index, 1, 'fecha', e.target.value)}
-                placeholder="Fecha de fin"
-              />
-              <br />
-              <label>Rango horario general:</label>
-              <input
-                type="time"
-                value={bloque.horario?.inicio || ''}
-                onChange={(e) => handleRangoHorarioChange(index, 'inicio', e.target.value)}
-                placeholder="Hora de inicio"
-              />
-              <input
-                type="time"
-                value={bloque.horario?.fin || ''}
-                onChange={(e) => handleRangoHorarioChange(index, 'fin', e.target.value)}
-                placeholder="Hora de fin"
-              />
             </div>
           )}
         </div>
       ))}
 
-      <button type="button" onClick={agregarBloqueFecha}>Agregar lógica de fechas</button>
+      <button type="button" onClick={agregarBloqueFecha} className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
+        Agregar lógica de fechas
+      </button>
       <br /><br />
-      <button type="button" className='bg-blue-50' onClick={handleSubmit}>Generar texto</button>
-      {frase!=='' && <p>{frase}</p>}
+      <button type="button" onClick={handleSubmit} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+        Generar texto
+      </button>
+      {frase !== '' && <p className="mt-4 text-lg text-gray-700">{frase}</p>}
     </div>
+
   );
 };
 
