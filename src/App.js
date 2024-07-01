@@ -11,118 +11,124 @@ function App() {
   const [dateText, setDateText] = useState('');
 
   const options = [
-    {edificio: "PRUEBA", correo: "aracely.chavez@rems.pe"},
-    {edificio: "PRUEBA VIOLETA", correo: "contabilidad.facturacion1@rems.pe"},
-    {edificio: "PRUEBA MARCOS", correo: "contabilidad.facturacion2@rems.pe"},
-    {edificio: "TORRE SIGLO XXI", correo: "Bruno.Rossi@rems.pe"},
-    {edificio: "TORRE PARQUE MAR", correo: "Patricia.Morel@rems.pe"},
-    {edificio: "EDIFICIO NACIONAL", correo: "Marani.Rios@rems.pe"},
-    {edificio: "CENTRO EJECUTIVO CHACARILLA", correo: "Jacson.Estrada@rems.pe"},
-    {edificio: "EDIFICIO AENZA", correo: "Kevin.Rivera@rems.pe"},
-    {edificio: "EDIFICIO SANTO TORIBIO", correo: "Luis.Ancajima@rems.pe"},
-    {edificio: "EDIFICIO VICTOR ANDRES BELAUNDE", correo: "Richard.Almeida@rems.pe"},
-    {edificio: "ESTACIONAMIENTOS  JW MARRIOTT - TPM", correo: "Patricia.Morel@rems.pe"},
-    {edificio: "EDIFICIO CAPITAL", correo: "Virginia.Aravena@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL POLO HUNT II", correo: "Martin.Alva@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL REDUCTO", correo: "ejecutivo.operaciones@rems.pe"},
-    {edificio: "EDIFICIO LARCO", correo: "Wilson.Romero@rems.pe"},
-    {edificio: "EDIFICIO FUNDACION", correo: "Zenobio.Meneses@rems.pe"},
-    {edificio: "CENTRO COMERCIAL SANTA MARIA", correo: "Miguel.Escobedo@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL TORRE PINAR", correo: "Jacson.Estrada@rems.pe"},
-    {edificio: "EDIFICIO METROPOLIS ", correo: "Rino.Calderon@rems.pe"},
-    {edificio: "EDIFICIO CORPORATIVO QUBO", correo: "Luis.Perez@rems.pe"},
-    {edificio: "EDIFICIO LA HABANA", correo: "ejecutivo.operaciones@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL SAN ISIDRO", correo: "Charlets.Cespedes@rems.pe"},
-    {edificio: "LAS TORRES SAN ISIDRO", correo: "JoseLuis.Pacherres@rems.pe"},
-    {edificio: "EDIFICIO MIRACORP", correo: "ejecutivo.operaciones@rems.pe"},
-    {edificio: "MACROS EDIFICIO EMPRESARIAL", correo: "Andrea.Bazo@rems.pe"},
-    {edificio: "TORRE AMERICA", correo: "Marani.Rios@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL JUAN DE ARONA", correo: "Romel.Elias@rems.pe"},
-    {edificio: "EDIFICIO PARDO Y ALIAGA", correo: "Manuel.Paulino@rems.pe"},
-    {edificio: "REDUCTO BUSINESS CENTER", correo: "Bruno.Rossi@rems.pe"},
-    {edificio: "EDIFICIO GERENS", correo: "Martin.Alva@rems.pe"},
-    {edificio: "EDIFICIO CHOCAVENTO", correo: "Antonio.Forno@rems.pe"},
-    {edificio: "EDIFICIO EMPRESARIAL OMEGA", correo: "Lorena.Contreras@rems.pe"},
-    {edificio: "LINK TOWER", correo: "Danny.Trigoso@rems.pe"},
-    {edificio: "ONYX BUSINESS CENTER", correo: "Carlos.Goitizolo@rems.pe"},
-    {edificio: "EDIFICIO 991", correo: "Gabriel.Rivera@rems.pe"},
-    {edificio: "EDIFICIO EMPRESARIAL GRAU", correo: "Kevin.Rivera@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL QUATTRO", correo: "Bruno.Rossi@rems.pe"},
-    {edificio: "EDIFICIO BASADRE 233", correo: "Adrian.Quino@rems.pe"},
-    {edificio: "EDIFICIO CORPORATIVO AENZA", correo: "Kevin.Rivera@rems.pe"},
-    {edificio: "EDIFICIO SANTA CRUZ", correo: "ejecutivo.operaciones@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL LEURO", correo: "Hugo.Garcia@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL TANGÜIS", correo: "Mario.Caspani@rems.pe"},
-    {edificio: "EDIFICIO LIBERTADORES", correo: "Jesus.Enriquez@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL LA MOLINA", correo: "Jaime.Chavez@rems.pe"},
-    {edificio: "EDIFICIO VITRA", correo: "Rino.Calderon@rems.pe"},
-    {edificio: "EDIFICIO CORPORATIVO ROOSEVELT", correo: "AnaMaria.Caceres@rems.pe"},
-    {edificio: "TORRE BARLOVENTO", correo: "Luis.Ancajima@rems.pe"},
-    {edificio: "EDIFICIO TORRE ORQUIDEAS", correo: "David.Campos@rems.pe"},
-    {edificio: "TORRE NAVARRETE", correo: "Nadia.Aspiazu@rems.pe"},
-    {edificio: "PANORAMA CENTRO EMPRESARIAL", correo: "Giancarlo.Bertarelli@rems.pe"},
-    {edificio: "EDIFICIO ALBERTO DEL CAMPO 409", correo: "Juan.Idrogo@rems.pe"},
-    {edificio: "JUNTA DE PROPIETARIOS DE LA TORRE 1", correo: "Daniel.Garces@rems.pe"},
-    {edificio: "EDIFICIO PARQUE LAS LOMAS", correo: "Dolores.Visconti@rems.pe"},
-    {edificio: "PRISMA BUSINESS TOWER", correo: "Patricia.Valdivia@rems.pe"},
-    {edificio: "EDIFICIO BASADRE 607", correo: "Liset.Severino@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL ABRIL", correo: "Ricardo.Porras@rems.pe"},
-    {edificio: "PRIME TOWER", correo: "Diego.Mendoza@rems.pe"},
-    {edificio: "OFIS TOWER", correo: "Diana.Sosa@rems.pe"},
-    {edificio: "ICHMA EDIFICIO CORPORATIVO", correo: "Vidal.Alvitres@rems.pe"},
-    {edificio: "EDIFICIO TRILLIUM TOWER", correo: "Wilson.Romero@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL VOLTERRA", correo: "Manuel.Paulino@rems.pe"},
-    {edificio: "TORRE WIESE", correo: "Gino.Poggi@rems.pe"},
-    {edificio: "EDIFICIO ALIAGA 360", correo: "Rafael.Bejarano@rems.pe"},
-    {edificio: "EDIFICIO T-TOWER", correo: "Felipe.Pena@rems.pe"},
-    {edificio: "TORRE TEKTON", correo: "Armando.Flores@rems.pe"},
-    {edificio: "TORRE FORUM", correo: "Juan.Chanta@rems.pe"},
-    {edificio: "PATIO ABTAO", correo: "Jenny.Reyes@rems.pe"},
-    {edificio: "PATIO CENTRIC", correo: "Gladys.Heredia@rems.pe"},
-    {edificio: "LIT ONE", correo: "Ninoska.Rojas@rems.pe"},
-    {edificio: "FIBRA PASEO DEL BOSQUE", correo: "Rolando.Turpo@rems.pe"},
-    {edificio: "CENTRO EMPRESARIAL BASADRE (ESTAC.)", correo: "Gladys.Heredia@rems.pe"},
-    {edificio: "TORRE PANAMÁ", correo: "William.Espinoza@rems.pe"},
-    {edificio: "EDIFICIO DEAN VALDIVIA N° 1 (China Railway)", correo: "AnaMaria.Caceres@rems.pe"},
-    {edificio: "PATIO CAMELIAS", correo: "Carola.Montezuma@rems.pe"},
-    {edificio: "EDIFICIO CREDISCOTIA", correo: "Darwin.Tafur@rems.pe"},
-    {edificio: "TORRE SANTA LUISA", correo: "William.Espinoza@rems.pe"},
-    {edificio: "EDIFICIO PERSHING TOWER", correo: "Karina Pareja@rems.pe"},
-    {edificio: "EDIFICIO EMPRESARIAL ESQUILACHE", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe"},
-    {edificio: "CENTRO DE CONVENCIONES Y OFICINAS CAMINO REAL", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe"},
-    {edificio: "EDIFICIO TORRE 28", correo: "dallyn.carrasco@rems.pe"}
-    ];
+    {edificio: "TORRE SIGLO XXI", correo: "Bruno.Rossi@rems.pe", articulo: "de la"},
+    {edificio: "TORRE PARQUE MAR", correo: "Patricia.Morel@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO NACIONAL", correo: "Marani.Rios@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EJECUTIVO CHACARILLA", correo: "Jacson.Estrada@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO AENZA", correo: "Kevin.Rivera@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO SANTO TORIBIO", correo: "Luis.Ancajima@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO VICTOR ANDRES BELAUNDE", correo: "Richard.Almeida@rems.pe", articulo: "del"},
+    {edificio: "ESTACIONAMIENTOS JW MARRIOTT - TPM", correo: "Patricia.Morel@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO CAPITAL", correo: "Virginia.Aravena@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL POLO HUNT II", correo: "Martin.Alva@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL REDUCTO", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO LARCO", correo: "Wilson.Romero@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO FUNDACION", correo: "Zenobio.Meneses@rems.pe", articulo: "del"},
+    {edificio: "CENTRO COMERCIAL SANTA MARIA", correo: "Miguel.Escobedo@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL TORRE PINAR", correo: "Jacson.Estrada@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO METROPOLIS", correo: "Rino.Calderon@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO CORPORATIVO QUBO", correo: "Luis.Perez@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO LA HABANA", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL SAN ISIDRO", correo: "Charlets.Cespedes@rems.pe", articulo: "del"},
+    {edificio: "LAS TORRES SAN ISIDRO", correo: "JoseLuis.Pacherres@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO MIRACORP", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
+    {edificio: "MACROS EDIFICIO EMPRESARIAL", correo: "Andrea.Bazo@rems.pe", articulo: "del"},
+    {edificio: "TORRE AMERICA", correo: "Marani.Rios@rems.pe", articulo: "de la"},
+    {edificio: "CENTRO EMPRESARIAL JUAN DE ARONA", correo: "Romel.Elias@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO PARDO Y ALIAGA", correo: "Manuel.Paulino@rems.pe", articulo: "del"},
+    {edificio: "REDUCTO BUSINESS CENTER", correo: "Bruno.Rossi@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO GERENS", correo: "Martin.Alva@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO CHOCAVENTO", correo: "Antonio.Forno@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO EMPRESARIAL OMEGA", correo: "Lorena.Contreras@rems.pe", articulo: "del"},
+    {edificio: "LINK TOWER", correo: "Danny.Trigoso@rems.pe", articulo: "de"},
+    {edificio: "ONYX BUSINESS CENTER", correo: "Carlos.Goitizolo@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO 991", correo: "Gabriel.Rivera@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO EMPRESARIAL GRAU", correo: "Kevin.Rivera@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL QUATTRO", correo: "Bruno.Rossi@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO BASADRE 233", correo: "Adrian.Quino@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO CORPORATIVO AENZA", correo: "Kevin.Rivera@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO SANTA CRUZ", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL LEURO", correo: "Hugo.Garcia@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL TANGÜIS", correo: "Mario.Caspani@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO LIBERTADORES", correo: "Jesus.Enriquez@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL LA MOLINA", correo: "Jaime.Chavez@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO VITRA", correo: "Rino.Calderon@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO CORPORATIVO ROOSEVELT", correo: "AnaMaria.Caceres@rems.pe", articulo: "del"},
+    {edificio: "TORRE BARLOVENTO", correo: "Luis.Ancajima@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO TORRE ORQUIDEAS", correo: "David.Campos@rems.pe", articulo: "del"},
+    {edificio: "TORRE NAVARRETE", correo: "Nadia.Aspiazu@rems.pe", articulo: "de la"},
+    {edificio: "PANORAMA CENTRO EMPRESARIAL", correo: "Giancarlo.Bertarelli@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO ALBERTO DEL CAMPO 409", correo: "Juan.Idrogo@rems.pe", articulo: "del"},
+    {edificio: "JUNTA DE PROPIETARIOS DE LA TORRE 1", correo: "Daniel.Garces@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO PARQUE LAS LOMAS", correo: "Dolores.Visconti@rems.pe", articulo: "del"},
+    {edificio: "PRISMA BUSINESS TOWER", correo: "Patricia.Valdivia@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO BASADRE 607", correo: "Liset.Severino@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL ABRIL", correo: "Ricardo.Porras@rems.pe", articulo: "del"},
+    {edificio: "PRIME TOWER", correo: "Diego.Mendoza@rems.pe", articulo: "de"},
+    {edificio: "OFIS TOWER", correo: "Diana.Sosa@rems.pe", articulo: "de"},
+    {edificio: "ICHMA EDIFICIO CORPORATIVO", correo: "Vidal.Alvitres@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO TRILLIUM TOWER", correo: "Wilson.Romero@rems.pe", articulo: "del"},
+    {edificio: "CENTRO EMPRESARIAL VOLTERRA", correo: "Manuel.Paulino@rems.pe", articulo: "del"},
+    {edificio: "TORRE WIESE", correo: "Gino.Poggi@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO ALIAGA 360", correo: "Rafael.Bejarano@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO T-TOWER", correo: "Felipe.Pena@rems.pe", articulo: "del"},
+    {edificio: "TORRE TEKTON", correo: "Armando.Flores@rems.pe", articulo: "de la"},
+    {edificio: "TORRE FORUM", correo: "Juan.Chanta@rems.pe", articulo: "de la"},
+    {edificio: "PATIO ABTAO", correo: "Jenny.Reyes@rems.pe", articulo: "de"},
+    {edificio: "PATIO CENTRIC", correo: "Gladys.Heredia@rems.pe", articulo: "de"},
+    {edificio: "LIT ONE", correo: "Ninoska.Rojas@rems.pe", articulo: "de"},
+    {edificio: "FIBRA PASEO DEL BOSQUE", correo: "Rolando.Turpo@rems.pe", articulo: "de"},
+    {edificio: "CENTRO EMPRESARIAL BASADRE (ESTAC.)", correo: "Gladys.Heredia@rems.pe", articulo: "del"},
+    {edificio: "TORRE PANAMÁ", correo: "William.Espinoza@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO DEAN VALDIVIA N° 1 (China Railway)", correo: "AnaMaria.Caceres@rems.pe", articulo: "del"},
+    {edificio: "PATIO CAMELIAS", correo: "Carola.Montezuma@rems.pe", articulo: "de"},
+    {edificio: "EDIFICIO CREDISCOTIA", correo: "Darwin.Tafur@rems.pe", articulo: "del"},
+    {edificio: "TORRE SANTA LUISA", correo: "William.Espinoza@rems.pe", articulo: "de la"},
+    {edificio: "EDIFICIO PERSHING TOWER", correo: "Karina Pareja@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO EMPRESARIAL ESQUILACHE", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe", articulo: "del"},
+    {edificio: "CENTRO DE CONVENCIONES Y OFICINAS CAMINO REAL", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe", articulo: "del"},
+    {edificio: "EDIFICIO TORRE 28", correo: "dallyn.carrasco@rems.pe", articulo: "del"}
+] ;
 
   const forAll = {
     "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios"], "label":"Dirigido a"},
-    "2": {"tipo":"select", "valores":options.map(objeto => objeto.edificio), "label":"Edificio"},
+    "2": {"tipo":"select", "valores":options.map(objeto => objeto.articulo +" "+ objeto.edificio), "label":"Edificio"},
     "3": {"tipo":"oneDate", "label":"Fecha de comunicado"}
   }
   const dataTypes = {
-    "Comunicado charlas y simulacros de evacuación": {
-        "option": "Comunicado charlas y simulacros de evacuación",
+    "Comunicado capacitación de brigadas": {
+        "option": "Comunicado capacitación de brigadas",
         "1": {"tipo":"datetime", "label":"Fecha(s)"},
         "2": {"tipo":"select", "valores":["presencial","virtual"], "label":"Modalidad"},
         "3": {"tipo":"texto", "label":"Ubicación"}
     },
-    "Comunicado desinfección de áreas comunes": {
-        "option": "Comunicado desinfección de áreas comunes",
+    "Comunicado desinfección de áreas comunes y privadas": {
+        "option": "Comunicado desinfección de áreas comunes y privadas",
         "1": {"tipo":"datetime", "label":"Fecha(s)"},
-        "2": {"tipo":"texto", "label":"Ubicación"}
+        "2": {"tipo":"entero", "label":"Horas de espera antes de pasar por las áreas"}
     },
-    "Comunicado fumigación y desaratización": {
-        "option": "Comunicado fumigación y desaratización",
+    "Comunicado desinfección de áreas comunes": {
+        "option": "Comunicado desinfección de áreas comunes y privadas",
         "1": {"tipo":"datetime", "label":"Fecha(s)"},
-        "2": {"tipo":"texto", "label":"Ubicación"},
-        "3": {"tipo":"entero", "label": "Horas de espera"}
+        "2": {"tipo":"entero", "label":"Horas de espera antes de pasar por las áreas"}
+    },
+    "Comunicado fumigación": {
+        "option": "Comunicado fumigación",
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
+        "2": {"tipo":"entero", "label": "Horas de espera antes de pasar por las áreas"}
     },
     "Comunicado limpieza de fachada de vidrio": {
         "option": "Comunicado limpieza de fachada de vidrio",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
+    "Comunicado inspección de muro cortina": {
+        "option": "Comunicado inspección de muro cortina",
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
+        "2": {"tipo":"entero", "label":"Tiempo estimado de demora en minutos"}
+    },
     "Comunicado limpieza muro cortina": {
         "option": "Comunicado limpieza muro cortina",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
     },
     "Comunicado mantenimiento de aire acondicionado": {
         "option": "Comunicado mantenimiento de aire acondicionado",
@@ -158,9 +164,11 @@ function App() {
         "option": "Comunicado mantenimiento de puertas cortafuegos",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento de puertas de ingreso vehicular": {
+    "Comunicado mantenimiento de puertas vehiculares": {
         "option": "Comunicado mantenimiento de puertas de ingreso vehicular",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
+        "2": {"tipo":"entero", "label": "Hora de inicio (formato 24 horas)"},
+        "3": {"tipo":"entero", "label": "Hora de fin (formato 24 horas)"}
     },
     "Comunicado mantenimiento de subestación eléctrica": {
         "option": "Comunicado mantenimiento de subestación eléctrica",
@@ -174,11 +182,11 @@ function App() {
         "option": "Comunicado mantenimiento de tableros eléctricos",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento de torre de enfriamiento": {
-        "option": "Comunicado mantenimiento de torre de enfriamiento",
+    "Comunicado mantenimiento de la torre de enfriamiento": {
+        "option": "Comunicado mantenimiento de la torre de enfriamiento",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento equipos multimedia": {
+    "Comunicado mantenimiento de equipos multimedia": {
         "option": "Comunicado mantenimiento equipos multimedia",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
@@ -204,6 +212,15 @@ function App() {
         "5": {"tipo":"texto", "label":"Nombre de Backup"}
     }
   };
+
+  function convertDate(isoDate) {
+    // Parse the date components from the ISO format
+    const [year, month, day] = isoDate.split('-');
+
+    // Format the date as DD/MM/YYYY
+    const formattedDate = `${day}/${parseInt(month)}/${year}`;
+    return formattedDate;
+}
 
   const dataTypesArray = Object.entries(dataTypes).map(([key, value]) => {
       // Aquí puedes realizar las operaciones que desees con cada par clave-valor
@@ -247,6 +264,10 @@ function App() {
         value = selectElement.options[selectElement.selectedIndex].value;
       } else {
         value = document.getElementsByName("x"+field)[0].value;
+      }
+
+      if (fieldType === 'oneDate') {
+        value = convertDate(value);
       }
 
       formData[`x${index + 1}`] = value; // Asignar al objeto usando clave dinámica
