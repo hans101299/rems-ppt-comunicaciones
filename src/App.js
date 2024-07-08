@@ -9,6 +9,20 @@ function App() {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [dateText, setDateText] = useState('');
+  const [selectedOptions, setSelectedOptions] = useState([]);
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setSelectedOptions((prevSelectedOptions) => {
+      if (checked) {
+        // Añadir el valor al array de opciones seleccionadas
+        return [...prevSelectedOptions, name];
+      } else {
+        // Eliminar el valor del array de opciones seleccionadas
+        return prevSelectedOptions.filter((option) => option !== name);
+      }
+    });
+  };
+
 
   const options = [
     {edificio: "TORRE SIGLO XXI", correo: "Bruno.Rossi@rems.pe", articulo: "de la"},
@@ -18,7 +32,7 @@ function App() {
     {edificio: "EDIFICIO AENZA", correo: "Kevin.Rivera@rems.pe", articulo: "del"},
     {edificio: "EDIFICIO SANTO TORIBIO", correo: "Luis.Ancajima@rems.pe", articulo: "del"},
     {edificio: "EDIFICIO VICTOR ANDRES BELAUNDE", correo: "Richard.Almeida@rems.pe", articulo: "del"},
-    {edificio: "ESTACIONAMIENTOS JW MARRIOTT - TPM", correo: "Patricia.Morel@rems.pe", articulo: "del"},
+    {edificio: "ESTACIONAMIENTOS JW MARRIOTT - TPM", correo: "Patricia.Morel@rems.pe", articulo: "de los"},
     {edificio: "EDIFICIO CAPITAL", correo: "Virginia.Aravena@rems.pe", articulo: "del"},
     {edificio: "CENTRO EMPRESARIAL POLO HUNT II", correo: "Martin.Alva@rems.pe", articulo: "del"},
     {edificio: "CENTRO EMPRESARIAL REDUCTO", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
@@ -32,7 +46,7 @@ function App() {
     {edificio: "CENTRO EMPRESARIAL SAN ISIDRO", correo: "Charlets.Cespedes@rems.pe", articulo: "del"},
     {edificio: "LAS TORRES SAN ISIDRO", correo: "JoseLuis.Pacherres@rems.pe", articulo: "de"},
     {edificio: "EDIFICIO MIRACORP", correo: "ejecutivo.operaciones@rems.pe", articulo: "del"},
-    {edificio: "MACROS EDIFICIO EMPRESARIAL", correo: "Andrea.Bazo@rems.pe", articulo: "del"},
+    {edificio: "MACROS EDIFICIO EMPRESARIAL", correo: "Andrea.Bazo@rems.pe", articulo: "de"},
     {edificio: "TORRE AMERICA", correo: "Marani.Rios@rems.pe", articulo: "de la"},
     {edificio: "CENTRO EMPRESARIAL JUAN DE ARONA", correo: "Romel.Elias@rems.pe", articulo: "del"},
     {edificio: "EDIFICIO PARDO Y ALIAGA", correo: "Manuel.Paulino@rems.pe", articulo: "del"},
@@ -57,9 +71,9 @@ function App() {
     {edificio: "TORRE BARLOVENTO", correo: "Luis.Ancajima@rems.pe", articulo: "de la"},
     {edificio: "EDIFICIO TORRE ORQUIDEAS", correo: "David.Campos@rems.pe", articulo: "del"},
     {edificio: "TORRE NAVARRETE", correo: "Nadia.Aspiazu@rems.pe", articulo: "de la"},
-    {edificio: "PANORAMA CENTRO EMPRESARIAL", correo: "Giancarlo.Bertarelli@rems.pe", articulo: "del"},
+    {edificio: "PANORAMA CENTRO EMPRESARIAL", correo: "Giancarlo.Bertarelli@rems.pe", articulo: "de"},
     {edificio: "EDIFICIO ALBERTO DEL CAMPO 409", correo: "Juan.Idrogo@rems.pe", articulo: "del"},
-    {edificio: "JUNTA DE PROPIETARIOS DE LA TORRE 1", correo: "Daniel.Garces@rems.pe", articulo: "de la"},
+    //{edificio: "JUNTA DE PROPIETARIOS DE LA TORRE 1", correo: "Daniel.Garces@rems.pe", articulo: "de la"},
     {edificio: "EDIFICIO PARQUE LAS LOMAS", correo: "Dolores.Visconti@rems.pe", articulo: "del"},
     {edificio: "PRISMA BUSINESS TOWER", correo: "Patricia.Valdivia@rems.pe", articulo: "de"},
     {edificio: "EDIFICIO BASADRE 607", correo: "Liset.Severino@rems.pe", articulo: "del"},
@@ -80,20 +94,21 @@ function App() {
     {edificio: "FIBRA PASEO DEL BOSQUE", correo: "Rolando.Turpo@rems.pe", articulo: "de"},
     {edificio: "CENTRO EMPRESARIAL BASADRE (ESTAC.)", correo: "Gladys.Heredia@rems.pe", articulo: "del"},
     {edificio: "TORRE PANAMÁ", correo: "William.Espinoza@rems.pe", articulo: "de la"},
-    {edificio: "EDIFICIO DEAN VALDIVIA N° 1 (China Railway)", correo: "AnaMaria.Caceres@rems.pe", articulo: "del"},
+    //{edificio: "EDIFICIO DEAN VALDIVIA N° 1 (China Railway)", correo: "AnaMaria.Caceres@rems.pe", articulo: "del"},
     {edificio: "PATIO CAMELIAS", correo: "Carola.Montezuma@rems.pe", articulo: "de"},
     {edificio: "EDIFICIO CREDISCOTIA", correo: "Darwin.Tafur@rems.pe", articulo: "del"},
     {edificio: "TORRE SANTA LUISA", correo: "William.Espinoza@rems.pe", articulo: "de la"},
     {edificio: "EDIFICIO PERSHING TOWER", correo: "Karina Pareja@rems.pe", articulo: "del"},
     {edificio: "EDIFICIO EMPRESARIAL ESQUILACHE", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe", articulo: "del"},
     {edificio: "CENTRO DE CONVENCIONES Y OFICINAS CAMINO REAL", correo: "Darwin.Zapata@rems.pe | Luis.Saavedra@rems.pe", articulo: "del"},
-    {edificio: "EDIFICIO TORRE 28", correo: "dallyn.carrasco@rems.pe", articulo: "del"}
+    {edificio: "EDIFICIO TORRE 28", correo: "dallyn.carrasco@rems.pe", articulo: "del"},
+    {edificio: "FIBRA-CAMINO REAL", correo:"Antonio.Forno@rems.pe",articulo: "de"}
 ] ;
 
   const forAll = {
     "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios"], "label":"Dirigido a"},
     "2": {"tipo":"select", "valores":options.map(objeto => objeto.articulo +" "+ objeto.edificio), "label":"Edificio"},
-    "3": {"tipo":"oneDate", "label":"Fecha de comunicado"}
+    "3": {"tipo":"oneDate", "label":"Fecha de emisión del comunicado"}
   }
   const dataTypes = {
     "Comunicado capacitación de brigadas": {
@@ -140,12 +155,16 @@ function App() {
         "1": {"tipo":"datetime", "label":"Fecha(s)"},
         "2": {"tipo":"entero", "label": "Ascensores operativos"}
     },
-    "Comunicado mantenimiento de bombas de agua y desagüe": {
-        "option": "Comunicado mantenimiento de bombas de agua y desagüe",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"}
-    },
-    "Comunicado mantenimiento de dispositivos de seguridad": {
-        "option": "Comunicado mantenimiento de dispositivos de seguridad",
+    //"Comunicado mantenimiento de bombas de agua y desagüe": {
+    //    "option": "Comunicado mantenimiento de bombas de agua y desagüe",
+    //    "1": {"tipo":"datetime", "label":"Fecha(s)"}
+    //},
+    //"Comunicado mantenimiento de dispositivos de seguridad": {
+    //    "option": "Comunicado mantenimiento de dispositivos de seguridad",
+    //    "1": {"tipo":"datetime", "label":"Fecha(s)"}
+    //},
+    "Comunicado mantenimiento de grupo electrógeno": {
+        "option": "Comunicado mantenimiento de grupo electrógeno",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado mantenimiento de mamparas": {
@@ -167,17 +186,17 @@ function App() {
     "Comunicado mantenimiento de puertas vehiculares": {
         "option": "Comunicado mantenimiento de puertas de ingreso vehicular",
         "1": {"tipo":"datetime", "label":"Fecha(s)"},
-        "2": {"tipo":"entero", "label": "Hora de inicio (formato 24 horas)"},
-        "3": {"tipo":"entero", "label": "Hora de fin (formato 24 horas)"}
+        "2": {"tipo":"texto", "label": "Hora de inicio (formato 24 horas) ejemplo: 08:30"},
+        "3": {"tipo":"texto", "label": "Hora de fin (formato 24 horas) ejemplo: 15:00"}
     },
     "Comunicado mantenimiento de subestación eléctrica": {
         "option": "Comunicado mantenimiento de subestación eléctrica",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento de tableros de transferencia y banco de condensadores": {
-        "option": "Comunicado mantenimiento de tableros de transferencia y banco de condensadores",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"}
-    },
+    //"Comunicado mantenimiento de tableros de transferencia y banco de condensadores": {
+    //    "option": "Comunicado mantenimiento de tableros de transferencia y banco de condensadores",
+    //    "1": {"tipo":"datetime", "label":"Fecha(s)"}
+    //},
     "Comunicado mantenimiento de tableros eléctricos": {
         "option": "Comunicado mantenimiento de tableros eléctricos",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
@@ -190,18 +209,19 @@ function App() {
         "option": "Comunicado mantenimiento equipos multimedia",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento Sistema Contra Incendio (SCI)": {
-        "option": "Comunicado mantenimiento Sistema Contra Incendio (SCI)",
+    "Comunicado mantenimiento Sistema Contra Incendio": {
+        "option": "Comunicado mantenimiento Sistema Contra Incendio",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento sistema preventivo de seguridad": {
-        "option": "Comunicado mantenimiento sistema preventivo de seguridad",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"},
-        "2": {"tipo":"time", "label":"Desde / Hasta"}
-    },
+    //"Comunicado mantenimiento sistema preventivo de seguridad": {
+    //    "option": "Comunicado mantenimiento sistema preventivo de seguridad",
+    //    "1": {"tipo":"datetime", "label":"Fecha(s)"},
+    //    "2": {"tipo":"time", "label":"Desde / Hasta"}
+    //},
     "Comunicado saneamiento ambiental": {
         "option": "Comunicado saneamiento ambiental",
-        "1": {"tipo":"datetime", "label":"Fecha(s)"}
+        "1": {"tipo":"datetime", "label":"Fecha(s)"},
+        "2": {"tipo":"checkbox", "label":"Actividades", "valores":["El lavado de cisterna de agua","El lavado de pozo sumidero", "Fumigación de las áreas comunes"]}
     },
     "Comunicado vacaciones": {
         "option": "Comunicado vacaciones",
@@ -284,9 +304,12 @@ function App() {
       if (fieldType === 'select') {
         const selectElement = document.getElementsByName("y"+field)[0];
         value = selectElement.options[selectElement.selectedIndex].value;
+      } else if (fieldType === 'checkbox') {
+        value = selectedOptions.map(option => `-    ${option}`).join('\\n');
       } else {
         value = document.getElementsByName("y"+field)[0].value;
       }
+  
 
       formData[`y${index + 1}`] = value; // Asignar al objeto usando clave dinámica
     });
@@ -395,12 +418,29 @@ function App() {
                       </select>
                     </div>
                   }
+                  {dataTypes[selectedOption][field].tipo === 'checkbox' &&
+                    <div>
+                        {dataTypes[selectedOption][field].valores.map((option, index) => (
+                          <div>
+                            <input
+                            type='checkbox'
+                            name={option}
+                            checked={selectedOptions.includes(option)}
+                            onChange={handleCheckboxChange}
+                            className="form-checkbox h-5 w-5 text-gray-600 mr-3"
+                          />
+                          {option}
+                        </div>
+                        ))}
+                    </div>
+                  }
                   {dataTypes[selectedOption][field].tipo === 'datetime' &&
                     <FechaHoraFormulario
                       setDateText={setDateText}
                     />
                   }
                   {dataTypes[selectedOption][field].tipo !== 'select' && dataTypes[selectedOption][field].tipo !== 'datetime' &&
+                  dataTypes[selectedOption][field].tipo !== 'checkbox' &&
                     <input
                       type='text'
                       name={`y${field}`}
@@ -417,7 +457,7 @@ function App() {
           onClick={handleSubmit}
           className="w-full bg-blue-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline hover:bg-blue-700"
         >
-          Enviar
+          Descargar
         </button>
       </form>
     </div>
