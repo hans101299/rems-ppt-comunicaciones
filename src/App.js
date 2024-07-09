@@ -179,8 +179,8 @@ function App() {
         "option": "Comunicado mantenimiento de pozos a tierra",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento de puertas cortafuegos": {
-        "option": "Comunicado mantenimiento de puertas cortafuegos",
+    "Comunicado mantenimiento de puertas cortafuego": {
+        "option": "Comunicado mantenimiento de puertas cortafuego",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado mantenimiento de puertas vehiculares": {
@@ -209,8 +209,8 @@ function App() {
         "option": "Comunicado mantenimiento equipos multimedia",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento Sistema Contra Incendio": {
-        "option": "Comunicado mantenimiento Sistema Contra Incendio",
+    "Comunicado mantenimiento del sistema contra incendio": {
+        "option": "Comunicado mantenimiento del sistema contra incendio",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     //"Comunicado mantenimiento sistema preventivo de seguridad": {
