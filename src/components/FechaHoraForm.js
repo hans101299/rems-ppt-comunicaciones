@@ -8,6 +8,10 @@ const FechaHoraFormulario = ({setDateText}) => {
     setBloques([...bloques, { tipo: 'especificas', fechas: [{ fecha: '', inicio: '', fin: '' }] }]);
   };
 
+  const quitarBloqueFecha = (index) => {
+    setBloques(bloques.filter((_, i) => i !== index));
+  };
+
   const handleTipoChange = (index, tipo) => {
     const nuevosBloques = [...bloques];
     nuevosBloques[index].tipo = tipo;
@@ -101,7 +105,12 @@ const FechaHoraFormulario = ({setDateText}) => {
 
       {bloques.map((bloque, index) => (
         <div key={index} className="bloque-fecha mb-6 p-4 border rounded-lg">
-          <label className="block text-gray-700 font-semibold mb-2">Tipo de fecha:</label>
+          <div className='flex justify-between'>
+            <label className="block text-gray-700 font-semibold mb-2">Tipo de fecha:</label>
+            <button type="button" onClick={() => quitarBloqueFecha(index)} className="w-20 mt-2 px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600">
+              Quitar
+            </button>
+          </div>
           <div className="mb-4">
             <label className="inline-flex items-center mr-4">
               <input

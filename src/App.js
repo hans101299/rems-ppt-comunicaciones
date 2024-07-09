@@ -106,7 +106,7 @@ function App() {
 ] ;
 
   const forAll = {
-    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios"], "label":"Dirigido a"},
+    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios","Usuario","Propietario", "Usuario y Propietario"], "label":"Dirigido a"},
     "2": {"tipo":"select", "valores":options.map(objeto => objeto.articulo +" "+ objeto.edificio), "label":"Edificio"},
     "3": {"tipo":"oneDate", "label":"Fecha de emisión del comunicado"}
   }
@@ -238,7 +238,7 @@ function App() {
     const [year, month, day] = isoDate.split('-');
 
     // Format the date as DD/MM/YYYY
-    const formattedDate = `${day}/${parseInt(month)}/${year}`;
+    const formattedDate = `${parseInt(day)}/${parseInt(month)}/${year}`;
     return formattedDate;
 }
 
@@ -270,6 +270,9 @@ function App() {
     event.preventDefault();
     const formData = {}; // Objeto vacío para almacenar los valores
     formData['y1'] = dateText;
+    var esSingular = false;
+    const paraOpciones = ["Usuario","Propietario"];
+    const paraOpcT = ["Usuarios","Propietarios", "Usuarios y Propietarios","Usuario","Propietario", "Usuario y Propietario"];
     fieldsToList(forAll).forEach((field, index) => {
       const fieldType = forAll[field].tipo;
       if (fieldType === 'datetime') {
@@ -282,6 +285,14 @@ function App() {
       if (fieldType === 'select') {
         const selectElement = document.getElementsByName("x"+field)[0];
         value = selectElement.options[selectElement.selectedIndex].value;
+        
+        if (paraOpciones.includes(value) ){
+          esSingular=true;
+          value = "Estimado "+ value
+        }
+        else if (paraOpcT.includes(value)){
+          value = "Estimados "+ value
+        }
       } else {
         value = document.getElementsByName("x"+field)[0].value;
       }
@@ -305,7 +316,7 @@ function App() {
         const selectElement = document.getElementsByName("y"+field)[0];
         value = selectElement.options[selectElement.selectedIndex].value;
       } else if (fieldType === 'checkbox') {
-        value = selectedOptions.map(option => `-    ${option}`).join('\\n');
+        value = selectedOptions.map(option => `-    ${option}`).join('\n');
       } else {
         value = document.getElementsByName("y"+field)[0].value;
       }
@@ -315,12 +326,14 @@ function App() {
     });
 
     console.log(formData);
+    const templateName = esSingular? selectedOption + "-individual" : selectedOption;
+    console.log(formData);
     const response = await fetch(
       //'http://164.68.101.193:5001/upload'
       'http://164.68.101.193:5002/process_ppt'
       , {
       method: 'POST',
-      body: JSON.stringify({"template":selectedOption,"data": formData}),
+      body: JSON.stringify({"template": templateName,"data": formData}),
       headers: {
         'Content-Type': 'application/json'
       }
