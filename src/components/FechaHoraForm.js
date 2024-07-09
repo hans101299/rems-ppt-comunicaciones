@@ -171,7 +171,7 @@ const FechaHoraFormulario = ({setDateText}) => {
                 </div>
               ))}
               <button type="button" onClick={() => agregarFechaEspecifica(index)} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Agregar nuevo rango de fechas
+                Agregar otra fecha
               </button>
             </div>
           )}
@@ -254,7 +254,7 @@ const FechaHoraFormulario = ({setDateText}) => {
       ))}
 
       <button type="button" onClick={agregarBloqueFecha} className="mt-4 px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">
-        Agregar lógica de fechas
+        Agregar nuevo rango de fechas
       </button>
       <br /><br />
       <button type="button" onClick={handleSubmit} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
