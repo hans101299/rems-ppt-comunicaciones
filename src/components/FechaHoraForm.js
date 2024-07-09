@@ -171,7 +171,7 @@ const FechaHoraFormulario = ({setDateText}) => {
                 </div>
               ))}
               <button type="button" onClick={() => agregarFechaEspecifica(index)} className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-                Agregar otra fecha
+                Agregar nuevo rango de fechas
               </button>
             </div>
           )}
