@@ -106,7 +106,7 @@ function App() {
 ] ;
 
   const forAll = {
-    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios","Usuario","Propietario", "Usuario y Propietario"], "label":"Dirigido a"},
+    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Propietarios y Usuarios","Usuario","Propietario", "Propietario y Usuario", "Propietario y Usuarios", "Propietarios y Usuario"], "label":"Dirigido a"},
     "2": {"tipo":"select", "valores":options.map(objeto => objeto.articulo +" "+ objeto.edificio), "label":"Edificio"},
     "3": {"tipo":"oneDate", "label":"Fecha de emisión del comunicado"}
   }
