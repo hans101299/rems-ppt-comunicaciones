@@ -107,7 +107,7 @@ function App() {
 ] ;
 
   const forAll = {
-    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Usuarios y Propietarios","Usuario","Propietario", "Usuario y Propietario"], "label":"Dirigido a"},
+    "1": {"tipo":"select", "valores":["Usuarios","Propietarios", "Propietarios y Usuarios","Usuario","Propietario", "Propietario y Usuario", "Propietario y Usuarios", "Propietarios y Usuario"], "label":"Dirigido a"},
     "2": {"tipo":"select", "valores":options.map(objeto => objeto.articulo +" "+ objeto.edificio), "label":"Edificio"},
     "3": {"tipo":"oneDate", "label":"Fecha de emisión del comunicado"}
   }
@@ -180,8 +180,8 @@ function App() {
         "option": "Comunicado mantenimiento de pozos a tierra",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento de puertas cortafuegos": {
-        "option": "Comunicado mantenimiento de puertas cortafuegos",
+    "Comunicado mantenimiento de puertas cortafuego": {
+        "option": "Comunicado mantenimiento de puertas cortafuego",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     "Comunicado mantenimiento de puertas vehiculares": {
@@ -210,8 +210,8 @@ function App() {
         "option": "Comunicado mantenimiento equipos multimedia",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
-    "Comunicado mantenimiento Sistema Contra Incendio": {
-        "option": "Comunicado mantenimiento Sistema Contra Incendio",
+    "Comunicado mantenimiento del sistema contra incendio": {
+        "option": "Comunicado mantenimiento del sistema contra incendio",
         "1": {"tipo":"datetime", "label":"Fecha(s)"}
     },
     //"Comunicado mantenimiento sistema preventivo de seguridad": {
