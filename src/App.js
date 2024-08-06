@@ -7,6 +7,7 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState('');
   const [dateText, setDateText] = useState('');
   const [selectedOptions, setSelectedOptions] = useState([]);
@@ -268,6 +269,7 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     const formData = {}; // Objeto vacío para almacenar los valores
     formData['y1'] = dateText;
     var esSingular = false;
